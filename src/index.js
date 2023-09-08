@@ -1,13 +1,34 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import { useEffect, useState } from "react";
 
-import App from "./App";
+export default function App() {
 
-const rootElement = document.getElementById("root");
-const root = createRoot(rootElement);
+    const [advice, setAdvice] = useState("");
+    const [count, setCount] = useState(0);
 
-root.render(
-    <StrictMode>
-        <App />
-    </StrictMode>
-);
+    async function getAdvice() {
+        const res = await fetch('https://api.adviceslip.com/advice');
+        const data = await res.json()
+        setAdvice(data.slip.advice);
+        setCount((c) => c + 1);
+    }
+
+    useEffect(function() {
+        getAdvice()
+    }, []);
+
+    return (
+        <div>
+            <h1>{advice}</h1>
+            <button onClick={getAdvice}>Get advice</button>
+            <Message count={count} />
+        </div>
+    );
+}
+
+function Message(props) {
+    return (
+        <p>
+            You have read <strong>{props.count}</strong> pieces of advice
+        </p>
+    );
+}

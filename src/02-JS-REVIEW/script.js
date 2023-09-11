@@ -148,8 +148,10 @@ function getBook(id) {
 const book = getBook(2);
 // books;
 
-const title = book.title;
-const author = book.author;
+// const title = book.title;
+// const author = book.author;
+
+const { title, author } = book; // destructuring so it saves lione of code
 // title;
 // author;
 console.log(author, title); // console.log the title and author

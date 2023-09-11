@@ -146,12 +146,23 @@ function getBook(id) {
 //Destructuring
 
 const book = getBook(2);
+book;
 // books;
 
 // const title = book.title;
 // const author = book.author;
 
-const { title, author } = book; // destructuring so it saves lione of code
+const { title, author, pages, publicationDate, genres, hasMovieAdaptation } =
+  book;
+// destructuring so it saves lione of code
 // title;
 // author;
-console.log(author, title); // console.log the title and author
+console.log(author, title, genres); // console.log the title and author
+
+// const primaryGenre = genres[0];
+// const secondaryGenre = genres[1];
+
+const [primaryGenre, secondaryGenre] = genres;
+
+console.log(primaryGenre, secondaryGenre); // this will let you call on what is in the [] that is part of genres instead of typin git all out like above lines
+console.log(genres); // this will log all genres

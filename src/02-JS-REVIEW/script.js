@@ -149,4 +149,7 @@ const book = getBook(2);
 // books;
 
 const title = book.title;
-title;
+const author = book.author;
+// title;
+// author;
+console.log(author, title); // console.log the title and author

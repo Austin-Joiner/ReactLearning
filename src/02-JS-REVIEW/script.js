@@ -234,3 +234,10 @@ countWrong;
 
 const rightCount = book.reviews.librarything.reviewsCount ?? "no data";
 rightCount;
+
+function getTotalReviewCount(book) {
+  const goodRead = book.reviews.goodreads.reviewsCount;
+  const librarything = book.reviews.librarything.reviewsCount;
+  return goodRead + librarything;
+}
+console.log(getTotalReviewCount(book));

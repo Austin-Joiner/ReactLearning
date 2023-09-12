@@ -145,7 +145,7 @@ function getBook(id) {
 
 //Destructuring
 
-const book = getBook(1);
+const book = getBook(2);
 book;
 // books;
 
@@ -174,15 +174,63 @@ const newGenres = [...genres, "epic fantasy"]; // this will layout each genre in
 newGenres;
 
 // const updatedBook = { book, moviePublicationDate: "2001-12-19" };// this will add the new property into a seperate object under the whole object
-const updatedBook = { ...book, moviePublicationDate: "2001-12-19" }; // with the spread operator it will combine them into a new object called updatedBook
-updatedBook;
+// const updatedBook = { ...book, moviePublicationDate: "2001-12-19" }; // with the spread operator it will combine them into a new object called updatedBook
+// updatedBook;
 const updatedBookFix = {
   ...book, // showing all properties from book
   moviePublicationDate: "2001-12-19", // adding a new property
-  pages: 1242,
+  pages: 1200,
 }; // this will overwrite the previous pages property to the new 1242
 updatedBookFix;
 console.log(updatedBookFix);
 
-const summary = `This is the summary of the book, ${title}, It is a great story.`;
+const summary = `This is the summary of the book, ${title}, It is a great story. By: ${author}, Published on: ${
+  publicationDate.split("-")[0] // you split the date by the - then grab the first in the array which the date is formatted yyyy-mm-dd so its [0]
+}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie.`; // conditional to true or false on movie adaptation.
 summary;
+
+const pagesRange =
+  updatedBookFix.pages > 1000 ? "over a thousand" : "less than 1000"; // pages > 1000=condition ?=if "over a thousand"=result :=elseif "less than 1000"=result;
+pagesRange;
+console.log(`The book has ${pagesRange} pages`);
+
+// original function vs arrow function
+//original function
+// function getYear(str) { //function decleration
+//   return str.split("-")[0];
+// }
+// console.log(getYear(publicationDate));
+//arrow function
+// const getYear = (str) => {  // another way to write the arrow if it needed more
+//  return str.split("-")[0]
+// };
+const getYear = (str) => str.split("-")[0]; // function expression
+console.log(getYear(publicationDate));
+
+const newSummary = `This is the summary of the book, ${title}, It is a great story. By: ${author}, Published on: ${
+  getYear(publicationDate) // you split the date by the - then grab the first in the array which the date is formatted yyyy-mm-dd so its [0]
+}. The book has ${hasMovieAdaptation ? "" : "not"} been adapted as a movie.`;
+newSummary;
+
+console.log(true && "Some String"); // true so it moves on to next
+console.log(false && "Some String"); // false so it stops and doesnt move on at all
+console.log(hasMovieAdaptation && "this book has a movie"); // if it does it will continue to the string if it is false will stop right there and not display the string
+//falsy: 0, '', null, undefined
+console.log("jonas"); // this is truthy it will show the string that follows
+console.log("jonas" && "show if true"); // this is truthy it will show the string that follows
+console.log(0 && "show if true");
+
+console.log(true || "some String"); // || is oppsotie of && and will display true and stop following lines
+console.log(false || "some string"); // this will pass to the following lines if false
+
+console.log(book.translations.spanish);
+
+const spanishTranslate = book.translations.spanish || "NOT Translated"; // will make it show spanish translation or show not translated if its false
+spanishTranslate;
+
+console.log(book.reviews.librarything.reviewsCount);
+const countWrong = book.reviews.librarything.reviewsCount || "no data";
+countWrong;
+
+const rightCount = book.reviews.librarything.reviewsCount ?? "no data";
+rightCount;

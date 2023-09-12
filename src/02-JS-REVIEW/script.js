@@ -183,3 +183,6 @@ const updatedBookFix = {
 }; // this will overwrite the previous pages property to the new 1242
 updatedBookFix;
 console.log(updatedBookFix);
+
+const summary = `This is the summary of the book, ${title}, It is a great story.`;
+summary;

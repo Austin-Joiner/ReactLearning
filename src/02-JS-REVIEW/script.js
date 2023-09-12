@@ -145,7 +145,7 @@ function getBook(id) {
 
 //Destructuring
 
-const book = getBook(2);
+const book = getBook(1);
 book;
 // books;
 
@@ -162,7 +162,24 @@ console.log(author, title, genres); // console.log the title and author
 // const primaryGenre = genres[0];
 // const secondaryGenre = genres[1];
 
-const [primaryGenre, secondaryGenre] = genres;
+// const [primaryGenre, secondaryGenre] = genres;
+const [primaryGenre, secondaryGenre, ...otherGenres] = genres; // add remaing genres to be listed in the array must be the last thing in the array break down
 
 console.log(primaryGenre, secondaryGenre); // this will let you call on what is in the [] that is part of genres instead of typin git all out like above lines
 console.log(genres); // this will log all genres
+console.log(primaryGenre, secondaryGenre, otherGenres); // this will show the first 2 genres then in a seperate array will list of the remaining
+
+// const newGenres = [genres, "epic fantasy"]; // this adds the new genre outside of the array
+const newGenres = [...genres, "epic fantasy"]; // this will layout each genre in the array so when making a new array called newGenre it is in the array with the others
+newGenres;
+
+// const updatedBook = { book, moviePublicationDate: "2001-12-19" };// this will add the new property into a seperate object under the whole object
+const updatedBook = { ...book, moviePublicationDate: "2001-12-19" }; // with the spread operator it will combine them into a new object called updatedBook
+updatedBook;
+const updatedBookFix = {
+  ...book, // showing all properties from book
+  moviePublicationDate: "2001-12-19", // adding a new property
+  pages: 1242,
+}; // this will overwrite the previous pages property to the new 1242
+updatedBookFix;
+console.log(updatedBookFix);

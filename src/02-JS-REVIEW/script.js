@@ -144,8 +144,8 @@ function getBook(id) {
 }
 
 //Destructuring
-
-const book = getBook(2);
+/*
+const book = getBook(3);
 book;
 // books;
 
@@ -228,16 +228,119 @@ console.log(book.translations.spanish);
 const spanishTranslate = book.translations.spanish || "NOT Translated"; // will make it show spanish translation or show not translated if its false
 spanishTranslate;
 
-console.log(book.reviews.librarything.reviewsCount);
-const countWrong = book.reviews.librarything.reviewsCount || "no data";
-countWrong;
+// console.log(book.reviews.librarything.reviewsCount);
+// const countWrong = book.reviews.librarything.reviewsCount || "no data";
+// countWrong;
 
-const rightCount = book.reviews.librarything.reviewsCount ?? "no data";
-rightCount;
+// const rightCount = book.reviews.librarything.reviewsCount ?? "no data";
+// rightCount;
 
 function getTotalReviewCount(book) {
-  const goodRead = book.reviews.goodreads.reviewsCount;
-  const librarything = book.reviews.librarything.reviewsCount;
+  const goodRead = book.reviews?.goodreads?.reviewsCount;
+  const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
   return goodRead + librarything;
 }
 console.log(getTotalReviewCount(book));
+*/
+// function getTotalReviewCount(book) {
+//   const goodRead = book.reviews?.goodreads?.reviewsCount;
+//   const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+//   return goodRead + librarything;
+// }
+// //Methods
+// //all methods create a new array
+// const books = getBooks();
+// books;
+// //map method
+// // map loops through the whole array and has a condition that effects each element in the array
+// const x = [1, 2, 3, 4, 5].map((el) => el * 2);
+// console.log(x);
+
+// const titles = books.map((book) => book.title);
+// console.log(titles);
+
+// const essentialInfo = books.map((book) => ({
+//   title: book.title,
+//   author: book.author,
+//   reviewsCount: getTotalReviewCount(book),
+// }));
+// console.log(essentialInfo);
+// //filter method
+// //filters through the array of book and makes a new array of books that meet the condition
+// const longBooks = books
+//   .filter((book) => book.pages > 500)
+//   .filter((book) => book.hasMovieAdaptation);
+// longBooks;
+
+// const adventureBooks = books
+//   .filter((books) => books.genres.includes("adventure"))
+//   .map((book) => book.title);
+
+// adventureBooks;
+
+// //reduce method
+// // acc + properties
+// // array 2,4,5,2
+// //acc = 0
+// //const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+// //acc = 0. first book.pages = 2 --- acc + book.pages = 2
+// // now acc is 2 and book pages will be 4 the 2 ele in array
+// //acc + pages = 6
+// //and so on
+// const pagesAllBooks = books.reduce((acc, book) => acc + book.pages, 0);
+// pagesAllBooks;
+
+// //sort method
+// // a and b are always the current value and the next value
+// // when given a negative number will flip the two around so they ascend
+// //this will sort them in the array
+// //this method mutates the original array instead of making a new array
+// //using .slice will make a copy of the arr array so it doesnt mutate it
+// const arr = [3, 7, 1, 9, 6];
+// const sorted = arr.slice().sort((a, b) => a - b);
+// // const sorted = arr.sort((a, b) => a - b);
+// sorted;
+// arr;
+
+// const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+// sortedByPages;
+
+// //Immutable Arrays
+// //add book obj to array
+// const newBook = {
+//   id: 6,
+//   title: "Harry Potter and The Chamber of Secrets",
+//   author: "J. K. Rowling",
+// };
+// const booksAfterAdd = [...books, newBook];
+// booksAfterAdd;
+
+// // delete a book obj from array
+// //you would use a variable instead of 3
+// // so its not really deleting it it is only making a new array without it
+// const booksAfterDelete = booksAfterAdd.filter((book) => book.id !== 3);
+// booksAfterDelete;
+
+// //update book obj in array
+// const booksAfterUpdate = booksAfterDelete.map((book) =>
+//   book.id === 1 ? { ...book, pages: 666 } : book
+// );
+// booksAfterUpdate;
+
+// fetching API data
+// fetch("https://jsonplaceholder.typicode.com/todos")
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
+//fetching api data cleaner
+async function getTodos() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const data = await res.json();
+  console.log(data);
+
+  return data;
+}
+// const todos = getTodos();
+// console.log(todos);
+// console.log("Jonas");
+getTodos();
